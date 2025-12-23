@@ -1,5 +1,5 @@
 /* Google Fonts - Editorial Typography */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+/* Fonts are now loaded via next/font in layout.tsx */
 
 @import "tailwindcss";
 
@@ -9,40 +9,62 @@
    ============================================ */
 
 :root {
-  /* === Core Palette: "Deep Atmosphere" === */
-  --obsidian: #0A0E14;
-  --obsidian-light: #101820;
-  --obsidian-lighter: #1A222D;
-  --charcoal: #232D3B;
-  --midnight-blue: #0D1B2A;
-  --stratosphere: #0F3D3A;
-  --stratosphere-glow: rgba(15, 61, 58, 0.6);
-  --stratosphere-bright: #1A5A55;
+  /* ... (colors remain unchanged) ... */
+  /* === Core Palette: "Deep Atmosphere" (OKLCH Refined) === */
+  /* Deep, rich void blue-black */
+  --obsidian: oklch(0.14 0.03 260);
+  /* Slightly lighter for cards */
+  --obsidian-light: oklch(0.19 0.03 260);
+  /* Elevated surface */
+  --obsidian-lighter: oklch(0.24 0.03 260);
 
-  /* === Warm Accent Colors for Contrast === */
-  --gold: #C9A962;
-  --gold-muted: rgba(201, 169, 98, 0.7);
-  --gold-subtle: rgba(201, 169, 98, 0.3);
-  --bronze: #8B7355;
-  --copper: #B87333;
+  /* === Surface Depth System === */
+  --surface-0: oklch(0.10 0.03 260);
+  --surface-100: var(--obsidian);
+  --surface-200: var(--obsidian-light);
+  --surface-300: var(--obsidian-lighter);
+  --surface-400: oklch(0.30 0.03 260);
 
-  /* === Metallic Accents === */
-  --titanium: #F0F2F5;
-  --titanium-muted: rgba(240, 242, 245, 0.8);
-  --titanium-subtle: rgba(240, 242, 245, 0.5);
-  --titanium-ghost: rgba(240, 242, 245, 0.15);
-  --platinum: #D8DCE2;
-  --silver: #9BA3AF;
+  --charcoal: oklch(0.25 0.04 255);
+  --midnight-blue: oklch(0.15 0.06 250);
+
+  /* Deep Teal/Green - Harmonized */
+  --stratosphere: oklch(0.32 0.08 190);
+  --stratosphere-glow: oklch(0.32 0.08 190 / 0.6);
+  --stratosphere-bright: oklch(0.55 0.12 185);
+  /* Brighter for hovers */
+  --stratosphere-hover: oklch(0.65 0.14 180);
+  /* Even brighter for hover states */
+
+  /* === Warm Accent Colors for Contrast (Mapped to Stratosphere Teal) === */
+  --gold: oklch(0.32 0.08 190);
+  --gold-bright: oklch(0.55 0.12 185);
+  --gold-muted: oklch(0.32 0.08 190 / 0.7);
+  --gold-subtle: oklch(0.32 0.08 190 / 0.3);
+  --bronze: oklch(0.25 0.06 195);
+  --copper: oklch(0.20 0.05 200);
+
+  /* === Metallic Accents (High Legibility) === */
+  /* Pure, cold white for headers */
+  --titanium: oklch(0.97 0.005 260);
+  --titanium-muted: oklch(0.97 0.005 260 / 0.8);
+  --titanium-subtle: oklch(0.97 0.005 260 / 0.5);
+  --titanium-ghost: oklch(0.97 0.005 260 / 0.15);
+
+  /* Cool grey, brightened for readability on dark */
+  --platinum: oklch(0.88 0.01 260);
+  --silver: oklch(0.78 0.02 260);
 
   /* === Atmospheric Glows === */
-  --glow-primary: rgba(15, 61, 58, 0.5);
-  --glow-gold: rgba(201, 169, 98, 0.3);
-  --glow-titanium: rgba(240, 242, 245, 0.1);
-  --glow-subtle: rgba(255, 255, 255, 0.05);
+  --glow-primary: oklch(0.32 0.08 190 / 0.5);
+  --glow-stratosphere: oklch(0.32 0.08 190 / 0.3);
+  --glow-titanium: oklch(0.97 0.005 260 / 0.1);
+  --glow-subtle: oklch(1 0 0 / 0.05);
 
   /* === Typography === */
-  --font-serif: 'Cinzel', Georgia, serif;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Fallback fonts included, but primary comes from CSS variables injected by next/font */
+  --font-serif: var(--font-serif), 'Cinzel', Georgia, serif;
+  --font-sans: var(--font-sans), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* === Spacing (Aggressive Whitespace) === */
   --space-xs: 0.5rem;
@@ -61,8 +83,8 @@
   --duration-glacial: 1200ms;
 
   /* === Glassmorphism === */
-  --glass-bg: rgba(16, 24, 32, 0.8);
-  --glass-border: rgba(240, 242, 245, 0.12);
+  --glass-bg: oklch(0.14 0.03 260 / 0.8);
+  --glass-border: oklch(0.97 0.005 260 / 0.12);
   --glass-blur: 20px;
 
   /* === Background === */
@@ -76,6 +98,13 @@
   --color-obsidian: var(--obsidian);
   --color-obsidian-light: var(--obsidian-light);
   --color-charcoal: var(--charcoal);
+
+  /* New Surface Depth System */
+  --color-surface-0: var(--surface-0);
+  --color-surface-100: var(--surface-100);
+  --color-surface-200: var(--surface-200);
+  --color-surface-300: var(--surface-300);
+
   --color-stratosphere: var(--stratosphere);
   --color-stratosphere-bright: var(--stratosphere-bright);
   --color-gold: var(--gold);
@@ -93,9 +122,52 @@
 }
 
 html {
-  scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: var(--charcoal) var(--obsidian);
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
+  /* Premium smooth scrolling */
+  scroll-behavior: smooth;
+  /* Prevents rubber-banding on Mac/iOS */
+}
+
+/* Enhanced smooth scroll with reduced motion support */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Smoother transitions for scroll-triggered animations */
+  .scroll-smooth-enhanced * {
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-4px);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(4px);
+  }
+}
+
+.animate-shake {
+  animation: shake 0.4s cubic-bezier(.36, .07, .19, .97) both;
 }
 
 body {
@@ -106,6 +178,8 @@ body {
   letter-spacing: 0.02em;
   line-height: 1.7;
   overflow-x: hidden;
+  width: 100%;
+  position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -176,10 +250,89 @@ p {
 }
 
 .glass-dark {
-  background: rgba(10, 14, 20, 0.85);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
-  border: 1px solid rgba(240, 242, 245, 0.05);
+  background: rgba(10, 14, 20, 0.6);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(240, 242, 245, 0.08);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05),
+    0 20px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+.glass-panel {
+  background: rgba(10, 14, 20, 0.7);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.04),
+    0 25px 50px -12px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(26, 90, 85, 0.5), transparent);
+  opacity: 0.8;
+}
+
+/* === Depth Card - True 3D Lighting System === */
+.depth-card {
+  background: rgba(10, 14, 20, 0.7);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
+  border-radius: 4px;
+  position: relative;
+
+  /* Light-edge simulation (overhead light source) */
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-top-color: rgba(255, 255, 255, 0.12);
+  border-left-color: rgba(255, 255, 255, 0.08);
+
+  /* Two-layer shadow system */
+  box-shadow:
+    /* Layer 1: Ambient (large blur, low opacity) */
+    0 25px 50px -12px rgba(0, 0, 0, 0.4),
+    /* Layer 2: Direct/sharp (close, darker, grounds object) */
+    0 4px 6px -1px rgba(0, 0, 0, 0.3),
+    /* Inner highlight */
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
+}
+
+.depth-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(26, 90, 85, 0.4), transparent);
+}
+
+/* Depth card with glow aura */
+.depth-card-glow {
+  position: relative;
+}
+
+.depth-card-glow::after {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(ellipse at center, var(--glow-stratosphere), transparent 70%);
+  opacity: 0.3;
+  z-index: -1;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease-premium);
+}
+
+.depth-card-glow:hover::after {
+  opacity: 0.5;
 }
 
 /* === Metallic Border === */
@@ -367,18 +520,28 @@ a:hover {
 }
 
 .container-wide {
-  max-width: 1600px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 var(--space-md);
+  padding-left: clamp(1.5rem, 5vw, 6rem);
+  padding-right: clamp(1.5rem, 5vw, 6rem);
+}
+
+.container-narrow {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-left: clamp(1.5rem, 5vw, 6rem);
+  padding-right: clamp(1.5rem, 5vw, 6rem);
 }
 
 /* === Section Spacing === */
 .section {
-  padding: var(--space-2xl) 0;
+  padding-top: clamp(3rem, 8vw, 8rem);
+  padding-bottom: clamp(3rem, 8vw, 8rem);
 }
 
 .section-tight {
-  padding: var(--space-xl) 0;
+  padding-top: clamp(2rem, 5vw, 5rem);
+  padding-bottom: clamp(2rem, 5vw, 5rem);
 }
 
 /* === Focus States === */
@@ -429,4 +592,779 @@ textarea::placeholder {
 
 .tracking-wide {
   letter-spacing: 0.15em;
+}
+
+.will-change-transform {
+  will-change: transform;
+}
+
+/* === Global Animations === */
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  100% {
+    background-position: 200% 200%;
+  }
+}
+
+/* === Hide Next.js Dev Indicator === */
+[data-nextjs-toast],
+[data-nextjs-static-indicator] {
+  display: none !important;
+}
+
+/* === Custom Animations for Home Page === */
+@keyframes reveal-up {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-reveal-up {
+  animation: reveal-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+/* === Utility Animations (mimicking tailwindcss-animate) === */
+.animate-in {
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: var(--ease-out-expo);
+  opacity: 0;
+  /* Starte invisible */
+}
+
+.fade-in {
+  animation-name: fadeIn;
+}
+
+.slide-in-from-right-4 {
+  animation-name: slideInRight;
+}
+
+.slide-in-from-top-2 {
+  animation-name: slideInTop;
+}
+
+.zoom-in-95 {
+  animation-name: zoomIn;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInTop {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Delay Utilities */
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+.delay-700 {
+  animation-delay: 700ms;
+}
+
+/* Duration Utilities */
+.duration-300 {
+  animation-duration: 300ms;
+}
+
+.duration-500 {
+  animation-duration: 500ms;
+}
+
+.duration-700 {
+  animation-duration: 700ms;
+}
+
+/* === Decorative Element Animations === */
+@keyframes shimmer {
+  0% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.2;
+  }
+
+  25% {
+    transform: translateY(-20px) translateX(10px);
+    opacity: 0.4;
+  }
+
+  50% {
+    transform: translateY(-10px) translateX(-5px);
+    opacity: 0.3;
+  }
+
+  75% {
+    transform: translateY(-25px) translateX(5px);
+    opacity: 0.5;
+  }
+}
+
+@keyframes pulse-slow {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
+}
+
+/* Scroll Reveal Animation */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Premium Hover Effects */
+.hover-lift {
+  transition: transform 0.4s var(--ease-premium), box-shadow 0.4s var(--ease-premium);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.hover-glow {
+  transition: box-shadow 0.4s var(--ease-premium);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 40px rgba(26, 90, 85, 0.15);
+}
+
+/* Image Placeholder Gradients */
+.image-placeholder {
+  background: linear-gradient(135deg,
+      var(--surface-100) 0%,
+      var(--surface-200) 50%,
+      var(--surface-100) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.image-placeholder::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(26, 90, 85, 0.05),
+      transparent);
+  animation: shimmer-slide 3s ease-in-out infinite;
+}
+
+@keyframes shimmer-slide {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Section Backgrounds */
+.section-gradient-dark {
+  background: linear-gradient(180deg,
+      var(--surface-0) 0%,
+      var(--surface-100) 50%,
+      var(--surface-0) 100%);
+}
+
+.section-gradient-accent {
+  background: linear-gradient(135deg,
+      rgba(26, 90, 85, 0.05) 0%,
+      transparent 50%,
+      rgba(26, 90, 85, 0.03) 100%);
+}
+
+/* ===========================================
+   PERFORMANCE OPTIMIZATIONS
+   =========================================== */
+
+/* Content visibility for offscreen sections */
+.section,
+.section-tight {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .grain {
+    display: none;
+  }
+}
+
+/* Optimize animations on mobile */
+@media (max-width: 768px) {
+  .grain {
+    opacity: 0.02;
+  }
+
+  .animate-pulse-slow,
+  .animate-float {
+    animation: none;
+  }
+}
+
+/* Will-change hints for animated elements */
+.magnetic-btn,
+.hover-lift,
+.hover-glow {
+  will-change: transform;
+}
+
+/* ===========================================
+   RESPONSIVE UTILITIES
+   =========================================== */
+
+/* ========================================
+   MOBILE STYLES (up to 640px)
+   Comprehensive mobile-first approach
+   ======================================== */
+@media (max-width: 640px) {
+
+  /* Spacing scale for mobile */
+  :root {
+    --space-xs: 0.5rem;
+    /* 8px */
+    --space-sm: 1rem;
+    /* 16px */
+    --space-md: 1.5rem;
+    /* 24px */
+    --space-lg: 2rem;
+    /* 32px */
+    --space-xl: 2.5rem;
+    /* 40px */
+    --space-2xl: 3rem;
+    /* 48px */
+    --space-3xl: 4rem;
+    /* 64px */
+  }
+
+  /* Typography - readable on mobile */
+  body {
+    font-size: 1rem;
+    /* 16px base */
+    line-height: 1.6;
+  }
+
+  h1 {
+    font-size: 1.875rem;
+    /* 30px */
+    line-height: 1.2;
+    margin-bottom: var(--space-md);
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    /* 24px */
+    line-height: 1.25;
+    margin-bottom: var(--space-sm);
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    /* 20px */
+    line-height: 1.3;
+    margin-bottom: var(--space-xs);
+  }
+
+  p {
+    font-size: 1rem;
+    /* 16px - readable */
+    line-height: 1.7;
+  }
+
+  /* Container padding - generous horizontal padding */
+  .container-wide,
+  .container-narrow {
+    padding-left: 1.5rem;
+    /* 24px */
+    padding-right: 1.5rem;
+    /* 24px */
+  }
+
+  /* Section padding - generous vertical spacing */
+  .section {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+  }
+
+  /* Hero section - more top padding for mobile */
+  section:first-of-type .container-wide,
+  section:first-of-type .container-narrow {
+    padding-top: 7rem;
+    /* Clear space below fixed nav */
+    padding-bottom: var(--space-xl);
+  }
+
+  /* Glass cards - proper padding */
+  .glass,
+  .glass-dark,
+  .glass-panel {
+    padding: var(--space-md);
+    border-radius: 0.375rem;
+  }
+
+  /* Buttons - touch-friendly sizing */
+  .magnetic-btn {
+    padding: 1rem 1.5rem;
+    font-size: 0.8125rem;
+    /* 13px */
+    min-height: 48px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Form inputs - touch-friendly */
+  input,
+  textarea,
+  select {
+    font-size: 1rem;
+    /* 16px - prevents iOS zoom */
+    padding: 1rem;
+    min-height: 48px;
+  }
+
+  /* Grid layouts - single column on mobile */
+  .grid {
+    gap: var(--space-md);
+  }
+
+  /* Card spacing */
+  article,
+  .card {
+    padding: var(--space-md);
+  }
+
+  /* Text blocks - better reading experience */
+  .prose,
+  .text-content {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  /* Better spacing between elements */
+  .space-y-6>*+* {
+    margin-top: var(--space-md);
+  }
+
+  .space-y-8>*+* {
+    margin-top: var(--space-lg);
+  }
+
+  .space-y-12>*+* {
+    margin-top: var(--space-xl);
+  }
+
+  /* Hide decorative elements on mobile */
+  .hide-mobile {
+    display: none !important;
+  }
+
+  /* Footer adjustments */
+  footer {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-lg);
+  }
+
+  footer .grid {
+    gap: var(--space-lg);
+  }
+
+  /* Navigation mobile tweaks */
+  nav {
+    padding-left: var(--space-sm);
+    padding-right: var(--space-sm);
+  }
+
+  /* Quote form specific adjustments */
+  .glass-panel {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* Service cards */
+  article.group {
+    padding: var(--space-lg);
+  }
+
+  /* Improved gap spacing */
+  .gap-4 {
+    gap: var(--space-sm);
+  }
+
+  .gap-6 {
+    gap: var(--space-md);
+  }
+
+  .gap-8 {
+    gap: var(--space-md);
+  }
+
+  .gap-12 {
+    gap: var(--space-lg);
+  }
+
+  .gap-16 {
+    gap: var(--space-xl);
+  }
+
+  .gap-20 {
+    gap: var(--space-2xl);
+  }
+
+  /* Improved margin bottom */
+  .mb-4 {
+    margin-bottom: var(--space-sm);
+  }
+
+  .mb-6 {
+    margin-bottom: var(--space-md);
+  }
+
+  .mb-8 {
+    margin-bottom: var(--space-md);
+  }
+
+  .mb-12 {
+    margin-bottom: var(--space-lg);
+  }
+
+  .mb-16 {
+    margin-bottom: var(--space-xl);
+  }
+
+  /* Improved padding */
+  .p-6 {
+    padding: var(--space-md);
+  }
+
+  .p-8 {
+    padding: var(--space-md);
+  }
+
+  .p-10 {
+    padding: var(--space-lg);
+  }
+
+  .p-12 {
+    padding: var(--space-lg);
+  }
+
+  .py-8 {
+    padding-top: var(--space-md);
+    padding-bottom: var(--space-md);
+  }
+
+  .py-12 {
+    padding-top: var(--space-lg);
+    padding-bottom: var(--space-lg);
+  }
+
+  .py-16 {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-xl);
+  }
+
+  .py-20 {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+  }
+
+  .py-24 {
+    padding-top: var(--space-3xl);
+    padding-bottom: var(--space-3xl);
+  }
+
+  .px-6 {
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+  }
+
+  .px-8 {
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+  }
+
+  /* Fix text truncation on small screens */
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Mobile touch target optimization */
+@media (max-width: 768px) {
+
+  .magnetic-btn,
+  button,
+  a[href] {
+    min-height: 44px;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+    /* Prevents iOS zoom on focus */
+  }
+}
+
+/* ===========================================
+   RESPONSIVE GRID SYSTEM
+   =========================================== */
+
+/* Custom responsive grid classes */
+.grid-responsive-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .grid-responsive-2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+.grid-responsive-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .grid-responsive-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive-3 {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+.grid-responsive-4 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 480px) {
+  .grid-responsive-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .grid-responsive-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive-4 {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* ===========================================
+   MOBILE-SPECIFIC HIDING/SHOWING
+   =========================================== */
+
+.hide-mobile {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .hide-mobile {
+    display: block;
+  }
+}
+
+.show-mobile-only {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .show-mobile-only {
+    display: none;
+  }
+}
+
+/* Mobile-optimized spacing */
+.py-mobile-adjusted {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .py-mobile-adjusted {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .py-mobile-adjusted {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+/* Text alignment responsive */
+.text-center-mobile {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .text-center-mobile {
+    text-align: left;
+  }
 }

@@ -13,149 +13,81 @@ export default function ContactPage() {
         <>
             <Navigation />
 
-            {/* Hero */}
-            <section className="relative min-h-[50vh] flex items-center justify-center pt-24">
-                <div className="absolute inset-0 bg-gradient-to-b from-obsidian-light via-obsidian to-obsidian" />
-                <div
-                    className="absolute inset-0 opacity-10"
-                    style={{
-                        background: 'radial-gradient(ellipse at 50% 50%, rgba(8, 37, 35, 0.5) 0%, transparent 50%)',
-                    }}
-                />
+            {/* Hero - Minimal & Direct */}
+            <section className="relative h-[50vh] md:h-[60vh] flex items-center justify-center overflow-hidden bg-obsidian">
+                {/* Subtle Ambient Background */}
+                <div className="absolute inset-0">
+                    <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-stratosphere-glow/10 blur-[120px] rounded-full" />
+                    <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-stratosphere-glow/5 blur-[100px] rounded-full" />
+                </div>
 
-                <div className="container-narrow relative z-10 text-center">
-                    <p className="text-xs tracking-ultra uppercase text-stratosphere mb-6 emerge-from-shadow">
-                        Contact
+                <div className="container-narrow relative z-10 text-center pt-16 md:pt-20">
+                    <p className="text-xs tracking-[0.3em] uppercase text-silver/40 mb-6 md:mb-8 animate-fade-in-up">
+                        Secure Communication
                     </p>
-                    <h1 className="font-serif text-titanium mb-8 gradient-text" style={{ fontSize: 'clamp(2rem, 6vw, 4rem)' }}>
+                    <h1 className="font-serif text-3xl md:text-5xl lg:text-7xl text-titanium mb-6 md:mb-8 tracking-tight animate-fade-in-up delay-100">
                         Initiate Dialogue
                     </h1>
-                    <p className="text-lg text-silver font-light max-w-2xl mx-auto">
-                        If you're looking to engage, submit your details below. Serious inquiries
-                        receive a response within 24-48 hours through secure channels.
-                    </p>
+                    <div className="w-px h-12 md:h-16 bg-gradient-to-b from-titanium-subtle to-transparent mx-auto opacity-50 animate-fade-in-up delay-200 hidden md:block" />
                 </div>
             </section>
 
-            {/* Contact Form Section */}
-            <section className="section bg-obsidian">
+            {/* Contact Interface */}
+            <section className="section bg-obsidian -mt-10 md:-mt-20 relative z-20">
                 <div className="container-narrow">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                        {/* Form */}
-                        <div>
-                            <div className="glass p-10 rounded-sm">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16 xl:gap-24">
+
+                        {/* Direct Line / Info - First on mobile for context */}
+                        <div className="lg:col-span-5 order-1 lg:pt-12 space-y-8 md:space-y-12 lg:space-y-16">
+                            <div>
+                                <h3 className="font-serif text-xl md:text-2xl text-titanium mb-4 md:mb-6">Direct Channels</h3>
+                                <p className="text-silver/60 font-light leading-relaxed mb-6 md:mb-8">
+                                    For urgent matters or direct acquisitions, utilize the dedicated lines below. All communications are encrypted and confidential.
+                                </p>
+
+                                <div className="space-y-4 md:space-y-6">
+                                    <div className="group">
+                                        <span className="text-[10px] uppercase tracking-widest text-stratosphere block mb-1">Electronic Mail</span>
+                                        <a href="mailto:sales@aureluxgroup.com" className="text-lg md:text-xl text-titanium font-light hover:text-white transition-colors flex items-center gap-2">
+                                            sales@aureluxgroup.com
+                                            <span className="opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0 duration-300">→</span>
+                                        </a>
+                                    </div>
+
+                                    <div className="group">
+                                        <span className="text-[10px] uppercase tracking-widest text-stratosphere block mb-1">Direct Line</span>
+                                        <a href="tel:+16814613153" className="text-lg md:text-xl text-titanium font-light hover:text-white transition-colors flex items-center gap-2">
+                                            +1 681 461 3153
+                                            <span className="opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0 duration-300">→</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="p-6 md:p-8 border border-titanium-ghost/20 bg-titanium-ghost/5 rounded-sm">
+                                <span className="block text-titanium font-serif mb-2">Response Protocol</span>
+                                <p className="text-sm text-silver/50 font-light">
+                                    Serious inquiries are typically addressed within 24 hours. Verification may be required for off-market asset data rooms.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Interactive Form Area - Second on mobile */}
+                        <div className="lg:col-span-7 order-2">
+                            <div className="glass-dark p-6 md:p-8 lg:p-12 rounded-sm border border-white/5 shadow-2xl relative overflow-hidden group">
+                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-stratosphere to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
                                 <ContactForm />
                             </div>
                         </div>
-
-                        {/* Contact Info */}
-                        <div>
-                            <p className="text-xs tracking-ultra uppercase text-stratosphere mb-4">
-                                Direct Contact
-                            </p>
-                            <h2 className="font-serif text-titanium mb-8">
-                                Aurelux Group LLC
-                            </h2>
-
-                            <div className="space-y-8">
-                                <div>
-                                    <p className="text-xs tracking-ultra uppercase text-silver mb-2">
-                                        Email
-                                    </p>
-                                    <a
-                                        href="mailto:sales@aureluxgroup.com"
-                                        className="text-titanium hover:text-titanium-muted transition-colors"
-                                    >
-                                        sales@aureluxgroup.com
-                                    </a>
-                                </div>
-
-                                <div>
-                                    <p className="text-xs tracking-ultra uppercase text-silver mb-2">
-                                        Phone
-                                    </p>
-                                    <a
-                                        href="tel:+16814613153"
-                                        className="text-titanium hover:text-titanium-muted transition-colors"
-                                    >
-                                        +1 681 461 3153
-                                    </a>
-                                </div>
-
-                                <div>
-                                    <p className="text-xs tracking-ultra uppercase text-silver mb-2">
-                                        Location
-                                    </p>
-                                    <p className="text-titanium">
-                                        Sheridan, WY, USA
-                                    </p>
-                                </div>
-
-                                <div className="pt-8 border-t border-titanium-ghost">
-                                    <p className="text-sm text-silver font-light leading-relaxed">
-                                        All inquiries are treated with complete confidentiality.
-                                        We respond through secure channels only.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* FAQ Section */}
-            <section className="section-tight bg-obsidian-light">
+            {/* Locations - Minimal Text */}
+            <section className="py-16 md:py-24 bg-obsidian border-t border-titanium-ghost/5 text-center">
                 <div className="container-narrow">
-                    <div className="text-center mb-12">
-                        <p className="text-xs tracking-ultra uppercase text-stratosphere mb-4">
-                            Common Questions
-                        </p>
-                        <h2 className="font-serif text-titanium">
-                            Before You Inquire
-                        </h2>
-                    </div>
-
-                    <div className="max-w-2xl mx-auto space-y-8">
-                        <div className="p-6 border-b border-titanium-ghost">
-                            <h3 className="font-serif text-lg text-titanium mb-3">
-                                What types of inquiries do you accept?
-                            </h3>
-                            <p className="text-sm text-silver font-light">
-                                We work with serious buyers, sellers, and decision makers only.
-                                All inquiries should be specific and qualified.
-                            </p>
-                        </div>
-
-                        <div className="p-6 border-b border-titanium-ghost">
-                            <h3 className="font-serif text-lg text-titanium mb-3">
-                                How quickly will I receive a response?
-                            </h3>
-                            <p className="text-sm text-silver font-light">
-                                Qualified inquiries receive a response within 24-48 hours
-                                through secure channels.
-                            </p>
-                        </div>
-
-                        <div className="p-6 border-b border-titanium-ghost">
-                            <h3 className="font-serif text-lg text-titanium mb-3">
-                                Is my information kept confidential?
-                            </h3>
-                            <p className="text-sm text-silver font-light">
-                                Yes. All information is treated with complete confidentiality.
-                                We do not share data with third parties.
-                            </p>
-                        </div>
-
-                        <div className="p-6">
-                            <h3 className="font-serif text-lg text-titanium mb-3">
-                                What happens after I submit an inquiry?
-                            </h3>
-                            <p className="text-sm text-silver font-light">
-                                Our team reviews your request and responds with next steps
-                                if your inquiry aligns with our services.
-                            </p>
-                        </div>
-                    </div>
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-silver/30">Operating From</span>
+                    <h2 className="font-serif text-lg md:text-2xl text-titanium mt-3 md:mt-4 opacity-60">Sheridan, Wyoming &bull; Global Remote</h2>
                 </div>
             </section>
 
